@@ -1,0 +1,9 @@
+query myCommunities {
+	communities: myCommunities {
+		id
+		name
+		description
+		createdAt
+		updatedAt
+	}
+}

@@ -1,0 +1,41 @@
+.header {
+	width: 100%;
+	position: relative;
+
+	.container {
+		container-type: inline-size;
+
+		.banner {
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;
+			height: 4rem;
+			background-color: var(--color-secondary-background);
+
+			@media (min-width: 768px) {
+				border-radius: 8px;
+				margin-top: 0.5rem;
+			}
+		}
+	}
+
+	.actions {
+		position: relative;
+		display: flex;
+		padding-left: 1rem;
+		padding-right: 1rem;
+		justify-content: space-between;
+
+		@media (min-width: 768px) {
+			align-items: flex-end;
+			margin: 0px;
+			margin-bottom: -2.25rem;
+			top: -2.25rem;
+		}
+
+		.main {
+			display: flex;
+			gap: 10px;
+		}
+	}
+}

@@ -1,0 +1,47 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: fstack-backend
+    ports:
+      - "3001:3001"
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./backend:/usr/src/app
+    command: ["npm", "run", "start:dev"]
+    depends_on:
+      - database
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: fstack-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./frontend:/usr/src/app
+    command: ["npm", "run", "dev"]
+    depends_on:
+      - backend
+
+  database:
+    image: mysql:8.0
+    container_name: fstack-database
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:

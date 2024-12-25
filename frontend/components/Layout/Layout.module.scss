@@ -1,0 +1,40 @@
+.layout {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	background-color: var(--color-neutral-background);
+
+	.container {
+		display: grid;
+		height: calc(100vh - 56px);
+
+		--expand-duration: 250ms;
+		--collapse-duration: 300ms;
+		--expand-curve: cubic-bezier(0.65, 0, 0.35, 1);
+		--collapse-curve: cubic-bezier(0.87, 0, 0.13, 1);
+		grid-template-columns: repeat(1, minmax(0, 1fr));
+
+		@media (min-width: 1200px) {
+			--flex-nav-width: 272px;
+			--transition-duration: var(--expand-duration);
+			--transition-curve: var(--expand-curve);
+			grid-template-columns: 272px 1fr;
+		}
+	}
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	padding: 0 24px;
+	margin-left: auto;
+	margin-right: auto;
+
+	will-change: max-width;
+	max-width: calc(100vw - var(--flex-nav-width, 0px));
+	transition: max-width var(--transition-duration) var(--transition-curve);
+
+	@media (min-width: 1200px) {
+		width: 1120px;
+	}
+}

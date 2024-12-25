@@ -1,0 +1,22 @@
+query CommunityDetail($name: String!) {
+	communityDetail(name: $name) {
+		id
+		name
+		description
+		posts {
+			id
+			title
+			content
+			author {
+				id
+				username
+			}
+		}
+		creator {
+			id
+			username
+		}
+		createdAt
+		updatedAt
+	}
+}

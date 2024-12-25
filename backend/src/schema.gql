@@ -1,0 +1,109 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Vote {
+  id: Int!
+  user: User!
+  post: Post!
+  isUpvote: Boolean!
+}
+
+type Post {
+  id: Int!
+  title: String!
+  content: String!
+  author: User!
+  community: Community
+  votes: [Vote!]
+  upvotes: Int!
+  downvotes: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Community {
+  id: Int!
+  name: String!
+  description: String!
+  creator: User!
+  posts: [Post!]
+  communityUsers: [CommunityUser!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type CommunityUser {
+  id: Int!
+  role: String!
+  user: User!
+  community: Community!
+}
+
+type User {
+  id: Int!
+  isActive: Boolean!
+  username: String!
+  password: String!
+  bio: String
+  profilePictureUrl: String
+  email: String!
+  isEmailVerified: Boolean!
+  karma: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  posts: [Post!]
+  votes: [Vote!]
+  createdCommunities: [Community!]
+  communityUsers: [CommunityUser!]
+}
+
+type Query {
+  users: [User!]!
+  user(id: Float!): User!
+  me: User!
+  myCommunities: [Community!]!
+  communityDetail(name: String!): Community!
+  community(id: Int!): Community!
+}
+
+type Mutation {
+  createUser(createUserDatas: CreateUserDto!): User!
+  createPost(createPostDto: CreatePostDto!): Post!
+  createCommunity(createCommunityInput: CreateCommunityInput!): Community
+  updateCommunity(updateCommunityInput: UpdateCommunityInput!): Community!
+  removeCommunity(id: Int!): Community!
+}
+
+input CreateUserDto {
+  email: String!
+  username: String!
+  password: String!
+}
+
+input CreatePostDto {
+  title: String!
+  content: String!
+}
+
+input CreateCommunityInput {
+  """Name of the community"""
+  name: String!
+
+  """Description of the community"""
+  description: String!
+}
+
+input UpdateCommunityInput {
+  """Name of the community"""
+  name: String
+
+  """Description of the community"""
+  description: String
+  id: Int!
+}

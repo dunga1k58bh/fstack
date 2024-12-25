@@ -1,0 +1,10 @@
+mutation CreateUser($createUserDatas: CreateUserDto!) {
+	user: createUser(createUserDatas: $createUserDatas) {
+		id
+		username
+		email
+		isActive
+		createdAt
+		updatedAt
+	}
+}

@@ -1,0 +1,30 @@
+.header {
+	padding-bottom: 0;
+}
+
+.subtitle {
+	font-size: 14px;
+	color: var(--color-tone-2);
+}
+
+.main {
+	display: flex;
+	gap: 1rem;
+
+	.form {
+		min-width: 55%;
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	.preview {
+		--tw-shadow: var(--elevation-sm);
+		--tw-shadow-colored: var(--elevation-sm);
+		box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+			var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+		border-radius: 16px;
+		flex-grow: 1;
+		max-width: 268px;
+	}
+}
